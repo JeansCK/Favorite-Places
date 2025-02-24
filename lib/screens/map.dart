@@ -85,23 +85,24 @@ class _MapScreenState extends ConsumerState<MapScreen> {
           ]),
       body: Column(
         children: [
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: TextField(
-              controller: _searchController,
-              onSubmitted: (value) => _searchLocation(),
-              decoration: InputDecoration(
-                hintText: "Search location...",
-                prefixIcon: const Icon(Icons.search),
-                border: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(10),
+          if (widget.isSelecting)
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: TextField(
+                controller: _searchController,
+                onSubmitted: (value) => _searchLocation(),
+                decoration: InputDecoration(
+                  hintText: "Search location...",
+                  prefixIcon: const Icon(Icons.search),
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(10),
+                  ),
+                ),
+                style: TextStyle(
+                  color: Theme.of(context).colorScheme.onBackground,
                 ),
               ),
-              style: TextStyle(
-                color: Theme.of(context).colorScheme.onBackground,
-              ),
             ),
-          ),
           Expanded(
             child: FlutterMap(
               mapController: _mapController,
